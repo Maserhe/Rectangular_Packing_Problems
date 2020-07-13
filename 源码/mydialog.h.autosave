@@ -1,0 +1,42 @@
+#ifndef MYDIALOG_H
+#define MYDIALOG_H
+
+#include <QDialog>
+#include <QPainter>
+#include <QPen>
+#include <vector>
+#include <QColor>
+#include "clayout.h"
+const int Num = 50;
+
+namespace Ui {
+class MyDialog;
+}
+
+class MyDialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    
+    int leftX, leftY;  //矩形左下角坐标
+    int length, width; //矩形右上角坐标
+    int orientedF; //是否是横向摆放，（对于初始情况来说）
+
+    void init(int x, int y, int len, int wid, int w_hei, int w_wid);
+    explicit MyDialog(QWidget *parent = nullptr);
+
+    void draw();
+    void display(double n);  //显示资源利用率
+    void  paintEvent( QPaintEvent * );//自动调用 ，绘图
+    static int num;
+    int map[Num][5];
+    ~MyDialog();
+
+private:
+    Ui::MyDialog *ui;
+
+
+};
+
+#endif // MYDIALOG_H
